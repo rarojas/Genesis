@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  div(ng-app='genesis' ng-controller='mainCtrl')
+    h1= title
+    p Welcome to #{title}
+    section(id='products')
+      div(ng-repeat='product in products')
+        label {{product.name}} $ {{product.price || currency  }}
+        img(src='{{product.src}}',width='200px',heigth='200px')
