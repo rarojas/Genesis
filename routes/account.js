@@ -4,8 +4,9 @@ var User   = require('../models/user');
 
 
 router.get('/secure/account/profile/me', function(req, res) {
+  console.log(req.decoded);
   User.findOne({
-    name: req.decoded._doc.name
+    _id: req.decoded._id
   }, function(err, user) {
     if (err) throw err;
     if (!user) {

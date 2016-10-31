@@ -18,7 +18,11 @@ router.post('/authenticate', function(req, res) {
       if (user.password != req.body.password) {
         res.json({ success: false, message: 'Authentication failed. Wrong password.' });
       } else {
-        var token = jwt.sign(user, config.secret, { expiresIn: config.expiresIn });
+        var token = jwt.sign({
+          email : user.email,
+          _id   : user._id,
+          name  : user.name
+        }, config.secret, { expiresIn: config.expiresIn });
         res.json({
           success: true,
           message: 'Enjoy your token!',
